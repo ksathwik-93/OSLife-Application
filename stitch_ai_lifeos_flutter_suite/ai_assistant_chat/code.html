@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LifeOS AI Assistant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b1326;
+            color: #dae2fd;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(23, 31, 51, 0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(74, 68, 85, 0.3);
+        }
+        .ai-glow-bg {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, rgba(124, 58, 237, 0) 70%);
+            filter: blur(40px);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .message-bubble-ai {
+            border-bottom-left-radius: 4px;
+        }
+        .message-bubble-user {
+            border-bottom-right-radius: 4px;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface dark:bg-surface flex justify-between items-center px-container-padding-mobile py-stack-sm w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high flex items-center justify-center cursor-pointer active:scale-95 duration-200">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a young tech-savvy individual with soft studio lighting against a dark slate background. The style is minimalist and clean, matching a premium digital productivity ecosystem. High contrast with subtle violet rim lighting to signify an intelligent interface user." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoyfgmo1nQnrtTIsVrCnKd2Zf5Op-tJ1ozg66ipQXkzoO_bqq7OACaU3lcfM98B2pZdSx-bZxJHIR1x69JIRzhKySRvq65fLczlW-BaJutVdP0w-mFkZSFSPw7Oq2uSSuijWk9yFBSPA6CawlHtRzQSGRt2pbIO-On2NSILAf7UxGL486s3BAmvxzBxaTlJmFrnVwoPjJYMg4RWFQ17W496LJfFEI6rjU2B2or0fr4Pc6po9LSourDHHyYOL8QTd0x4E9pd_h9e47K"/>
+</div>
+<div class="flex flex-col">
+<span class="font-title-lg text-title-lg text-primary dark:text-primary leading-tight">AI Assistant</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="text-[10px] font-medium uppercase tracking-wider text-on-surface-variant">Online</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Content: Chat Canvas -->
+<main class="flex-1 flex flex-col relative overflow-hidden px-container-padding-mobile pt-stack-md pb-40">
+<!-- AI Atmospheric Glow -->
+<div class="ai-glow-bg top-1/4 -left-20"></div>
+<div class="ai-glow-bg bottom-1/4 -right-20"></div>
+<!-- Chat History -->
+<div class="space-y-stack-lg overflow-y-auto hide-scrollbar flex-1 max-w-3xl mx-auto w-full" id="chat-container">
+<!-- AI Welcome Message -->
+<div class="flex flex-col items-start max-w-[85%] animate-fade-in">
+<div class="glass-panel p-4 rounded-3xl message-bubble-ai shadow-sm">
+<p class="font-body-md text-body-md text-on-surface">Good evening. I've analyzed your upcoming schedule and recent notes. How can I assist your productivity today?</p>
+</div>
+<span class="mt-2 ml-2 text-[10px] text-on-surface-variant font-medium">18:42</span>
+</div>
+<!-- User Message Example -->
+<div class="flex flex-col items-end max-w-[85%] ml-auto">
+<div class="bg-primary-container p-4 rounded-3xl message-bubble-user text-on-primary-container shadow-md">
+<p class="font-body-md text-body-md">Summarize my notes from today's strategy meeting.</p>
+</div>
+<span class="mt-2 mr-2 text-[10px] text-on-surface-variant font-medium">18:43</span>
+</div>
+<!-- AI Response with "AI Glow" effect inside -->
+<div class="flex flex-col items-start max-w-[85%] relative">
+<div class="absolute -inset-1 bg-primary/10 blur-xl rounded-full opacity-50"></div>
+<div class="glass-panel p-4 rounded-3xl message-bubble-ai relative z-10 border-primary/30">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+                        Based on your "Q4 Growth Strategy" notes:
+                        <br/><br/>
+                        • <strong class="text-primary">Key Objective:</strong> Increase user retention by 15% through gamified onboarding.
+                        <br/>
+                        • <strong class="text-primary">Action Items:</strong> Review API documentation for the rewards module and sync with the Design team by Thursday.
+                    </p>
+</div>
+<span class="mt-2 ml-2 text-[10px] text-on-surface-variant font-medium">18:43</span>
+</div>
+<!-- Suggested Action Cards (Bento Style) -->
+<div class="grid grid-cols-2 gap-stack-sm w-full mt-stack-lg">
+<button class="glass-panel p-4 rounded-2xl flex flex-col gap-2 text-left hover:bg-surface-container-high transition-all active:scale-95 group">
+<span class="material-symbols-outlined text-secondary text-xl" data-icon="monitoring">monitoring</span>
+<span class="font-label-md text-label-md text-on-surface">Analyze my weekly spending</span>
+</button>
+<button class="glass-panel p-4 rounded-2xl flex flex-col gap-2 text-left hover:bg-surface-container-high transition-all active:scale-95 group">
+<span class="material-symbols-outlined text-tertiary text-xl" data-icon="calendar_month">calendar_month</span>
+<span class="font-label-md text-label-md text-on-surface">Prepare for tomorrow's sync</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Bottom Controls Floating Cluster -->
+<div class="fixed bottom-20 left-0 w-full px-container-padding-mobile z-40">
+<div class="max-w-3xl mx-auto space-y-4">
+<!-- Suggested Prompts Horizontal Scroll -->
+<div class="flex gap-2 overflow-x-auto hide-scrollbar pb-2">
+<button class="whitespace-nowrap px-4 py-2 rounded-full glass-panel text-[13px] text-on-surface-variant hover:text-primary border-primary/10 transition-colors">"Plan my workout"</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full glass-panel text-[13px] text-on-surface-variant hover:text-primary border-primary/10 transition-colors">"Draft follow-up email"</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full glass-panel text-[13px] text-on-surface-variant hover:text-primary border-primary/10 transition-colors">"Update task list"</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full glass-panel text-[13px] text-on-surface-variant hover:text-primary border-primary/10 transition-colors">"Settings"</button>
+</div>
+<!-- Input Field -->
+<div class="glass-panel p-2 rounded-[32px] flex items-center gap-2 shadow-2xl border-white/5">
+<button class="w-12 h-12 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="mic">mic</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-body-md font-body-md placeholder:text-on-surface-variant/50" placeholder="Message AI Assistant..." type="text"/>
+<button class="w-12 h-12 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center active:scale-90 transition-transform shadow-lg">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</div>
+</div>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface-container-low rounded-t-xl shadow-md">
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90 duration-200 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90 duration-200 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="font-label-md text-label-md">Calendar</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 duration-200 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+<span class="font-label-md text-label-md">AI</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90 duration-200 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90 duration-200 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</div>
+</nav>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#ffdcc6",
+                        "surface-bright": "#31394d",
+                        "on-background": "#dae2fd",
+                        "primary-container": "#7c3aed",
+                        "outline-variant": "#4a4455",
+                        "on-secondary": "#00344d",
+                        "on-primary": "#3f008e",
+                        "secondary-fixed-dim": "#89ceff",
+                        "on-tertiary-container": "#ffe0cd",
+                        "on-error": "#690005",
+                        "primary": "#d2bbff",
+                        "outline": "#958da1",
+                        "surface-container-lowest": "#060e20",
+                        "on-tertiary-fixed": "#301400",
+                        "surface-tint": "#d2bbff",
+                        "inverse-on-surface": "#283044",
+                        "tertiary-fixed-dim": "#ffb784",
+                        "tertiary-container": "#a15100",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#ffb784",
+                        "on-tertiary": "#4f2500",
+                        "secondary-container": "#00a2e6",
+                        "inverse-surface": "#dae2fd",
+                        "primary-fixed-dim": "#d2bbff",
+                        "inverse-primary": "#732ee4",
+                        "surface-container": "#171f33",
+                        "secondary-fixed": "#c9e6ff",
+                        "background": "#0b1326",
+                        "surface-container-highest": "#2d3449",
+                        "on-secondary-fixed": "#001e2f",
+                        "surface-dim": "#0b1326",
+                        "surface": "#0b1326",
+                        "secondary": "#89ceff",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "on-primary-fixed": "#25005a",
+                        "on-primary-container": "#ede0ff",
+                        "primary-fixed": "#eaddff",
+                        "on-tertiary-fixed-variant": "#713700",
+                        "surface-container-low": "#131b2e",
+                        "error-container": "#93000a",
+                        "on-surface": "#dae2fd",
+                        "on-secondary-container": "#00344e",
+                        "on-surface-variant": "#ccc3d8",
+                        "surface-container-high": "#222a3d",
+                        "surface-variant": "#2d3449",
+                        "on-primary-fixed-variant": "#5a00c6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "stack-sm": "8px",
+                        "container-padding-mobile": "16px",
+                        "container-padding-desktop": "32px",
+                        "stack-md": "16px",
+                        "unit": "4px",
+                        "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "title-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<script>
+        // Simple Micro-interaction for the Send button
+        document.querySelector('button[class*="bg-primary-container"]').addEventListener('click', function() {
+            const input = document.querySelector('input');
+            if (input.value.trim() !== "") {
+                const container = document.getElementById('chat-container');
+                const userMsg = document.createElement('div');
+                userMsg.className = 'flex flex-col items-end max-w-[85%] ml-auto animate-fade-in-up';
+                userMsg.innerHTML = `
+                    <div class="bg-primary-container p-4 rounded-3xl message-bubble-user text-on-primary-container shadow-md">
+                        <p class="font-body-md text-body-md">${input.value}</p>
+                    </div>
+                    <span class="mt-2 mr-2 text-[10px] text-on-surface-variant font-medium">Just now</span>
+                `;
+                container.appendChild(userMsg);
+                input.value = "";
+                container.scrollTop = container.scrollHeight;
+                
+                // Simulate AI typing response
+                setTimeout(() => {
+                    const aiMsg = document.createElement('div');
+                    aiMsg.className = 'flex flex-col items-start max-w-[85%] animate-fade-in';
+                    aiMsg.innerHTML = `
+                        <div class="glass-panel p-4 rounded-3xl message-bubble-ai shadow-sm border-primary/20">
+                            <div class="flex gap-1">
+                                <span class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce"></span>
+                                <span class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce [animation-delay:0.2s]"></span>
+                                <span class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce [animation-delay:0.4s]"></span>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(aiMsg);
+                    container.scrollTop = container.scrollHeight;
+                }, 800);
+            }
+        });
+    </script>
+</body></html>

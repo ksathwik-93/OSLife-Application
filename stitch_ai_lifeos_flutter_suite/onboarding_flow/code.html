@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LifeOS - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(23, 31, 51, 0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(149, 141, 161, 0.1);
+        }
+        .ai-glow-pulse {
+            box-shadow: 0 0 40px rgba(124, 58, 237, 0.15);
+            animation: pulse-glow 4s infinite ease-in-out;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 40px rgba(124, 58, 237, 0.15); }
+            50% { box-shadow: 0 0 60px rgba(124, 58, 237, 0.3); }
+        }
+        .onboarding-screen {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .onboarding-screen.active {
+            display: flex;
+            opacity: 1;
+        }
+        .step-dot {
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#ffdcc6",
+                        "surface-bright": "#31394d",
+                        "on-background": "#dae2fd",
+                        "primary-container": "#7c3aed",
+                        "outline-variant": "#4a4455",
+                        "on-secondary": "#00344d",
+                        "on-primary": "#3f008e",
+                        "secondary-fixed-dim": "#89ceff",
+                        "on-tertiary-container": "#ffe0cd",
+                        "on-error": "#690005",
+                        "primary": "#d2bbff",
+                        "outline": "#958da1",
+                        "surface-container-lowest": "#060e20",
+                        "on-tertiary-fixed": "#301400",
+                        "surface-tint": "#d2bbff",
+                        "inverse-on-surface": "#283044",
+                        "tertiary-fixed-dim": "#ffb784",
+                        "tertiary-container": "#a15100",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#ffb784",
+                        "on-tertiary": "#4f2500",
+                        "secondary-container": "#00a2e6",
+                        "inverse-surface": "#dae2fd",
+                        "primary-fixed-dim": "#d2bbff",
+                        "inverse-primary": "#732ee4",
+                        "surface-container": "#171f33",
+                        "secondary-fixed": "#c9e6ff",
+                        "background": "#0b1326",
+                        "surface-container-highest": "#2d3449",
+                        "on-secondary-fixed": "#001e2f",
+                        "surface-dim": "#0b1326",
+                        "surface": "#0b1326",
+                        "secondary": "#89ceff",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "on-primary-fixed": "#25005a",
+                        "on-primary-container": "#ede0ff",
+                        "primary-fixed": "#eaddff",
+                        "on-tertiary-fixed-variant": "#713700",
+                        "surface-container-low": "#131b2e",
+                        "error-container": "#93000a",
+                        "on-surface": "#dae2fd",
+                        "on-secondary-container": "#00344e",
+                        "on-surface-variant": "#ccc3d8",
+                        "surface-container-high": "#222a3d",
+                        "surface-variant": "#2d3449",
+                        "on-primary-fixed-variant": "#5a00c6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "stack-sm": "8px",
+                        "container-padding-mobile": "16px",
+                        "container-padding-desktop": "32px",
+                        "stack-md": "16px",
+                        "unit": "4px",
+                        "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "title-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen overflow-hidden font-body-lg selection:bg-primary-container">
+<!-- Splash Screen -->
+<div class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background transition-transform duration-1000 ease-in-out" id="splash-screen">
+<div class="relative flex flex-col items-center">
+<!-- AI Glow Effect -->
+<div class="absolute -z-10 w-48 h-48 bg-primary-container opacity-20 blur-[60px] ai-glow-pulse"></div>
+<!-- Logo Icon -->
+<div class="w-24 h-24 rounded-[32px] bg-gradient-to-br from-primary to-primary-container flex items-center justify-center shadow-2xl mb-stack-lg transition-transform duration-700 hover:scale-105">
+<span class="material-symbols-outlined text-[48px] text-on-primary-container" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-widest uppercase">LifeOS</h1>
+<p class="text-on-surface-variant font-label-md text-label-md mt-stack-sm opacity-60">INTELLIGENT AUTONOMY</p>
+</div>
+</div>
+<!-- Onboarding Flow Container -->
+<main class="relative h-screen w-full max-w-[440px] mx-auto overflow-hidden">
+<!-- Background Ambient Effects -->
+<div class="absolute inset-0 pointer-events-none">
+<div class="absolute top-[-10%] right-[-10%] w-96 h-96 bg-primary-container/10 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-[-5%] left-[-5%] w-80 h-80 bg-secondary-container/10 rounded-full blur-[80px]"></div>
+</div>
+<!-- Page 1: Master Your Life -->
+<section class="onboarding-screen active absolute inset-0 flex flex-col px-container-padding-mobile pt-24 pb-32" id="onboarding-1">
+<div class="flex-1 flex flex-col items-center text-center">
+<div class="w-full aspect-square relative mb-stack-lg rounded-[48px] overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="A futuristic, minimalist workspace with a single clean tablet showing a unified dashboard of calendars, tasks, and vital stats. The lighting is soft violet and deep slate, reflecting a high-end technological ecosystem. The aesthetic is polished and professional, emphasizing total control and organization in a calm, digital environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV5t949DUjo28Z586pxSNG6NqVEy0hnySlYJ67q4XVvrYLoQK0itthJJdX5qdqMqXfznfhH5vHMksmBhm7DV3oVXLE91wy_ydJt_nRa9ajZDfU_bFcpW_-pdJcWrKP5dEwcTnHq9bIXTvqqeDzc5lW75lft_sSB4MIOZaQ8ZUCP3FSAD_0dR3tyPDo5zy58GJwcIH4hdXt0NsNIMZTAPmJvieynVNXMZCiLSGZYYI6lQYSkRkA_TV2CDjoGqBDnA-KPUKqyPa7VaNG"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-stack-md">Master Your Life</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[85%]">Unify your schedule, tasks, and goals into a single intelligent canvas that breathes with your rhythm.</p>
+</div>
+</section>
+<!-- Page 2: AI-Powered Insights -->
+<section class="onboarding-screen absolute inset-0 flex flex-col px-container-padding-mobile pt-24 pb-32" id="onboarding-2">
+<div class="flex-1 flex flex-col items-center text-center">
+<div class="w-full aspect-square relative mb-stack-lg rounded-[48px] overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="Close-up of a sophisticated AI interface displaying floating holographic data points and productivity trend lines. The palette features deep violets and electric blues against a dark slate background. Soft glowing spheres represent smart suggestions, creating an atmosphere of advanced machine intelligence serving a human user in a sleek, minimalist digital space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBlsf7mP4nxN1NxNxHYUjqIxhvKwtiNz5yHMM88C-7Lzp_Wt9U4jVsHzHP3GgdhuA9awoYwTrBM60UwyZUoTBeVgz1qKrwjut0J9IvEArBF3aRRs2PzlAkw8CVi4uXR-tI-JkLSfM3MP94wi3aqak0I4IxZO7iIU_MwQGbTBaLTMMotNxQB6yaP7as-DzKoNgHUF6M0djhBDX9PY_XBY0sukgOBt7pMZfSh7s1XGE30QZPqwyMamr9TYt6WjyT906p8LbDS2sopcf7"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-stack-md">AI-Powered Insights</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[85%]">Receive proactive suggestions and deep productivity analytics to optimize your performance every day.</p>
+</div>
+</section>
+<!-- Page 3: Secure & Seamless -->
+<section class="onboarding-screen absolute inset-0 flex flex-col px-container-padding-mobile pt-24 pb-32" id="onboarding-3">
+<div class="flex-1 flex flex-col items-center text-center">
+<div class="w-full aspect-square relative mb-stack-lg rounded-[48px] overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="Abstract representation of digital security and multi-device synchronization. A stylized glowing shield icon emerges from a network of interconnected crystalline nodes. The visual style is premium glassmorphism with high-density blurs and a sophisticated dark theme. Lighting is focused and sharp, conveying a sense of impenetrable privacy and effortless connectivity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1MMON-qeLqOJ-fbVLNEHejJVblzRW_Sdg9nW8tt7rDW27rmKdzNkOreO2F5BJjL8h-CGU7v__Mtv6QHpRaT5bEB2zzp-_F9AgK3LftOALDdpgGpSAefmlgNAE32VK4S_3-_f7Q2w7uRppWnWs3xc-B8ZgOVih8XSvRtZJ7D375nEVaTuppIZxD3CoWAN8LB9_uI7VG3OU-OgnEsBhXzzDmlzOEbeby3UUPzYO_4OZPc21vmsqibM_RJ1Y8iMZkbo-Eg3pMHjo2SEM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-stack-md">Secure & Seamless</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[85%]">Your data stays yours with end-to-end encryption, perfectly synced across all your devices.</p>
+</div>
+</section>
+<!-- Fixed Footer Controls -->
+<footer class="absolute bottom-0 left-0 w-full p-container-padding-mobile flex flex-col gap-stack-lg bg-gradient-to-t from-background via-background/90 to-transparent">
+<!-- Indicators -->
+<div class="flex justify-center items-center gap-2">
+<div class="step-dot h-1.5 w-8 rounded-full bg-primary" data-step="0"></div>
+<div class="step-dot h-1.5 w-1.5 rounded-full bg-surface-container-highest" data-step="1"></div>
+<div class="step-dot h-1.5 w-1.5 rounded-full bg-surface-container-highest" data-step="2"></div>
+</div>
+<!-- Buttons -->
+<div class="flex items-center justify-between">
+<button class="px-6 py-3 font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" onclick="skipOnboarding()">
+                    Skip
+                </button>
+<button class="group flex items-center gap-2 bg-primary-container text-on-primary-container px-8 py-4 rounded-full font-label-md text-label-md shadow-lg active:scale-95 transition-all duration-200" id="next-btn" onclick="nextStep()">
+<span id="next-btn-text">Next</span>
+<span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</footer>
+</main>
+<script>
+        let currentStep = 0;
+        const totalSteps = 3;
+        const splash = document.getElementById('splash-screen');
+        const nextBtnText = document.getElementById('next-btn-text');
+        const screens = [
+            document.getElementById('onboarding-1'),
+            document.getElementById('onboarding-2'),
+            document.getElementById('onboarding-3')
+        ];
+        const dots = document.querySelectorAll('.step-dot');
+
+        // Handle Splash Screen Fade Out
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                splash.style.transform = 'translateY(-100%)';
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                }, 1000);
+            }, 2500);
+        });
+
+        function updateOnboarding() {
+            // Update Screens
+            screens.forEach((screen, index) => {
+                if (index === currentStep) {
+                    screen.classList.add('active');
+                } else {
+                    screen.classList.remove('active');
+                }
+            });
+
+            // Update Dots
+            dots.forEach((dot, index) => {
+                if (index === currentStep) {
+                    dot.classList.remove('w-1.5', 'bg-surface-container-highest');
+                    dot.classList.add('w-8', 'bg-primary');
+                } else {
+                    dot.classList.remove('w-8', 'bg-primary');
+                    dot.classList.add('w-1.5', 'bg-surface-container-highest');
+                }
+            });
+
+            // Update Button Text
+            if (currentStep === totalSteps - 1) {
+                nextBtnText.innerText = 'Get Started';
+            } else {
+                nextBtnText.innerText = 'Next';
+            }
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps - 1) {
+                currentStep++;
+                updateOnboarding();
+            } else {
+                // Final Action
+                alert('Welcome to LifeOS. Initializing your personal intelligence...');
+            }
+        }
+
+        function skipOnboarding() {
+            currentStep = totalSteps - 1;
+            updateOnboarding();
+        }
+
+        // Optional: Touch swipe logic
+        let touchstartX = 0;
+        let touchendX = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchstartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', e => {
+            touchendX = e.changedTouches[0].screenX;
+            handleGesture();
+        });
+
+        function handleGesture() {
+            if (touchendX < touchstartX - 50) {
+                nextStep();
+            }
+        }
+    </script>
+</body></html>

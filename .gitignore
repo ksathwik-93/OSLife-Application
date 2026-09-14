@@ -1,0 +1,99 @@
+# ============================================================
+# Flutter / Dart / Pub
+# ============================================================
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+
+# ============================================================
+# Dart-generated / Compiled files
+# ============================================================
+*.class
+*.pyc
+*.swp
+*.log
+
+# Dart generated
+*.g.dart.bak
+*.freezed.dart.bak
+
+# ============================================================
+# Android
+# ============================================================
+# Local machine-specific Android SDK paths — never commit
+android/local.properties
+
+# Android Studio build artifacts
+/android/app/debug/
+/android/app/profile/
+/android/app/release/
+/android/.gradle/
+
+# Gradle caches
+.gradle/
+
+# ============================================================
+# IDE / Editor specific
+# ============================================================
+# IntelliJ / Android Studio
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# VS Code (optional — uncomment if you don't use VS Code workspace settings)
+# .vscode/
+
+# Xcode
+*.xcworkspace/
+*.xcuserdata/
+*.xcscheme
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# ============================================================
+# Symbolication & Obfuscation
+# ============================================================
+app.*.symbols
+app.*.map.json
+
+# ============================================================
+# Environment / Secrets / Local config
+# ============================================================
+# Do NOT commit environment files with secrets
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
+google-services.json.bak
+GoogleService-Info.plist.bak
+
+# ============================================================
+# Misc
+# ============================================================
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# Coverage
+coverage/
+
+# Test results
+test-results/

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "387878207593",
+    "project_id": "lifeos-b5506",
+    "storage_bucket": "lifeos-b5506.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:387878207593:android:4952706c5d502cfb2522f8",
+        "android_client_info": {
+          "package_name": "com.example.lifeos_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAk82pLV6V2q45Vhemki-2NkE1HLSiJBS4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
